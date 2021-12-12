@@ -31,7 +31,7 @@ resource "aws_lb" "caddy" {
   security_groups    = [aws_security_group.caddy_sg.id]
   subnets            = ["subnet-acb3b4a2", "subnet-62465a2f"]
 
-  enable_deletion_protection = true
+  enable_deletion_protection = false
 
   tags = {
     Environment = "production"
