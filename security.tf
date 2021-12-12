@@ -1,4 +1,4 @@
-resource "aws_security_group" "caddy" {
+resource "aws_security_group" "caddy_sg" {
 	name = "caddy"
 	description = "EC2 SG"
 
