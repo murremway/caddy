@@ -34,7 +34,7 @@ resource "aws_lb" "caddy" {
   enable_deletion_protection = false
 
   tags = {
-    Environment = "production"
+    Environment = "dev"
   }
 }
 
