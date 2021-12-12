@@ -10,6 +10,7 @@ resource "aws_instance" "caddy" {
     user_data   = base64encode(file("deploy.sh"))
     ami                                = "ami-083654bd07b5da81d"
     instance_type                      = "t2.micro"
+    key_name                           = "myjaninstkey"
     vpc_security_group_ids = [aws_security_group.caddy_sg.id]
     root_block_device {
     volume_type                     = "gp2"
