@@ -10,7 +10,7 @@ resource "aws_instance" "caddy" {
     user_data   = base64encode(file("deploy.sh"))
     ami                                = data.aws_ami.ubuntu.id
     instance_type                      = "t2.micro"
-    vpc_security_group_ids = [aws_security_group.jenkins_sg.id]
+    vpc_security_group_ids = [aws_security_group.caddy_sg.id]
     root_block_device {
     volume_type                     = "gp2"
     volume_size                     = 200
@@ -24,13 +24,13 @@ resource "aws_instance" "caddy" {
 }
 
 output "ec2_ip" {
-    value = [aws_instance.jenkins.*.private_ip]
+    value = [aws_instance.caddy.*.private_ip]
 }
 
 output "ec2_ip_public" {
-    value = [aws_instance.jenkins.*.public_ip]
+    value = [aws_instance.caddy.*.public_ip]
 }
 
 output "ec2_name" {
-    value = [aws_instance.jenkins.*.tags.Name]
+    value = [aws_instance.caddy.*.tags.Name]
 }
