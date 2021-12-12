@@ -1,7 +1,7 @@
 provider "aws" {
 
-        access_key = "ACCESS KEY"
-        secret_key  = "SECRET KEY"
+        access_key = "ACCESS_KEY"
+        secret_key  = "SECRET_KEY"
         region         = "us-east-1"
 
 }
@@ -23,6 +23,21 @@ resource "aws_instance" "caddy" {
   }
 
 }
+
+resource "aws_lb" "caddy" {
+  name               = "caddy-lb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.caddy_sg.id]
+  subnets            = ["subnet-acb3b4a2", "subnet-62465a2f"]
+
+  enable_deletion_protection = true
+
+  tags = {
+    Environment = "production"
+  }
+}
+
 
 output "ec2_ip" {
     value = [aws_instance.caddy.*.private_ip]
